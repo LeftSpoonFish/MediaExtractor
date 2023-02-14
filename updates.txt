@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+
+√ = Completed
+X = Not completed
+
+-------------------------------------------------------------------------------
+
+√ 1. (High Pri) Leveled faces
+  - Added face_align() function which calculates the angle by taking the arctan of the difference between the center of each eye.
+  - All cropped images are face aligned. 
+  
+√ 2. (High Pri) Cropping focused closer to the face, if present remove all visible bounding boxes
+  - Added option for crop_margin=1.10 when media_extractor class is instantiated. A crop_margin=1 is the bounding box.
+  - Added option for skip_frames=3 when extracting frames from video when media extractor class is instantiated (0: grabs every frame; 1: every otherframe, etc).
+  - Added option for confidence=0.90 when media_extractor class is instantiated. Lower bound set to 0.25 and upper to 1.00.
+  - Each option can be modified when the media_extractor class is instantiated.
+
+√ 3. (High Pri) All output as PNG
+  - All cropped images are saved as PNG. No resizing or normalization. Resolution of image the same as original.
+
+√ 4. (High Pri) renamed output folders to "Extracted Images (Unedited) and "Cropped Faces"
+  - Detection folder is removed.
+  - Output folders are renamed.
+
+√ 5. (Med to High Pri) Can you optimize to eliminate any libraries (We'll speed test later), Can you build yml file with that for env set up?
+  - yml file created.
+  - Unused libraries removed.
+  - No ML models required for media extractor.
+  - Reduced media_extractor to a single python file.
+  - Consolidated and reduced code.
+
+√ 6. (Low-Pri) Can we make the "STOP" button bigger and brighter?
+  - No clean way of doing a stop button inside of a Streamlit form. Recommendation is to use hamburger menu. Also would be unattractive to have such button external to the form.
+
+√ 7. (Low-Pri) Is it possible to have "Process" button vs auto-processing?
+  - Application is now contained within a form with a process button. Users will have to click the button to run media_extractor.
+
+√ 8. Research a means to put a file browser so user can set their specific output location. Otherwise default would be to output folder as we have it now
+  - Streamlit does not have a file browser widget.
+  - Default is the folder "output" in the top-level directory (same location as media_extractor.py).
+  - If this is to be "in the cloud", a static directory location is best as a user will not be able specify an output directory. No directory browser needed.
+
+√ 9. Performance testing
+  - All ML models have been removed from media_extractor.
+  - Fixed issue with processing office documents causing media_extractor to randomly lock up. Removed uncompress flag from magic.Magic() function to resolve issue.
+  - Removed all configurable parameters in order to streamline and simplify code.
+  - Optimized functions as needed.
+
+√ 10. Potential possibility of temporary .exe stand alone file (aim to get into cloud but .exe research (if quick) might be beneficial)
+  - Update configuration on high-side to create an executable. This is already place but should be much simpler to build.
+  - Should see performance increase due to small size of enviroment and media_extractor code, but will not be as fast as running in a cloud or local system.
+  - Docker container may also provide performance increase as it will be small. This container can also be built on the high-side since there ML models are no longer required.
